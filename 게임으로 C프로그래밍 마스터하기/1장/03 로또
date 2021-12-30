@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+	int data[6];
+	int i;
+	int j;
+
+	srand(time_t(NULL));
+
+	for (i = 0; i < 7; i++) {
+		data[i] = rand() % 45 + 1;
+
+		for (j = 0; j < i; j++) {
+			if (data[i] == data[j]) {
+				i--;
+				break;
+			}
+		}
+
+		printf("%d\t", data[i]);
+	}
+	return 0;
+}
