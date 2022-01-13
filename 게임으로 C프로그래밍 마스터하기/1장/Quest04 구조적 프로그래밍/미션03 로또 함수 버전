@@ -1,0 +1,68 @@
+// 구조적 프로그래밍
+// 앞선 Quest에서 만들었던 성적처리를 구조적 프로그래밍(중복을 체크하는 함수, 중복되지 않게 숫자를 얻어오는 함수, 출력 함수) 기법을 이용하여 각각 완성하라.
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int IsFind(int data[6], int index) {	// 초기화를 하고 중복되지 않게 숫자를 얻어오는 함수
+	int re;
+	int i;
+
+	re = 0;	// not find
+
+	for (i = 0; i < index; i++) {
+		if (data[i] == data[index]) {
+			re = 1;	// find
+			break;
+		}
+	}
+	return re;
+}
+
+void MakeData(int data[6]) {
+	int i;
+
+	srand(time_t(NULL));
+
+	for (i = 0; i < 6; i++) {
+		data[i] = rand() % 46 + 1;
+		if (1 == IsFind(data, i))
+			i--;
+	}
+}
+
+void Show(int data[6]) {	// 출력 함수
+	int i;
+
+	for (i = 0; i < 6; i++)
+		printf(" %d\t", data[i]);
+	printf("\n");
+}
+
+int main() {
+	int i;
+	int data[6];
+
+	MakeData(data);
+
+	Show(data);
+
+/*	srand(time(NULL));
+
+	for (i = 0; i < 6; i++) {
+		data[i] = rand() % 45 + 1;
+		for (j = 0; j < i; j++) {
+			if (data[i] == data[j]) {
+				i--;
+				break;
+			}
+		}
+	}
+
+	for (i = 0; i < 6; i++) {
+		printf("%d\t", data[i]);
+	}
+	printf("\n"); */
+
+	return 0;
+}
