@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define END -1
+#define GA 0
+#define BA 1
+#define BO 2
+
+#define WIN 0
+#define LOSE 1	
+
+void Count(int* count, int* wcount) {
+	*count = 0;
+	*wcount = 0;
+	srand(time(NULL));
+}
+
+int ComPlay() {
+	return rand() % 3;
+}
+int PlayerPlay() {
+	int player;
+
+	printf("-1(종료), 0(가위), 1(바위), 보(2)? ");
+	scanf_s("%d", &player);
+
+	return player;
+}
+
+int Check(int com, int player) {
+
+	if (player == GA && com == BO || player == BA && com == GA || player == BO && com == BA)
+		return WIN;
+
+	return LOSE;
+}
+
+void ShowRate(int count, int wcount) {
+	float wrate;
+	wrate = (float)wcount / count;
+
+	printf("Win Rate: %.2f\n", wrate);
+}
+
+int main() {
+	int com;
+	int player;
+	int re;
+	int count;
+	int wcount;
+	float wrate;
+
+	Count(&count, &wcount);
+
+	while (1) {
+		com = ComPlay();
+		player = PlayerPlay();
+
+		if (END == player)
+			break;
+
+		count++;
+		re = Check(com, player);
+		if (WIN == re) {
+			wcount++;
+			printf("You Win! com: %d player: %d\n", com, player);
+		}
+		else {
+			printf("You Lose! com: %d player: %d\n", com, player);
+		}
+	}
+	ShowRate(count, wcount);
+
+	return 0;
+}
