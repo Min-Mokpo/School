@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int a, b;
+    int c, d, e;
+    float f;
+    int max;
+    
+    printf("input data: ");
+    scanf_s("%d %d", &a, &b);
+
+    c = a + b;
+    d = a - b;
+    e = a * b;
+    f = (float)a / (float)b;
+    printf("%d + %d = %d\n", a, b, c);
+    printf("%d - %d = %d\n", a, b, d);
+    printf("%d * %d = %d\n", a, b, e);
+    printf("%d / %d = %.2f\n", a, b, f);
+
+    if (a > b)
+        max = a;
+    else
+        max = b;
+    printf("max: %d", max);
+
+    return 0;
+}
